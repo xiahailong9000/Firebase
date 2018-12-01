@@ -17,7 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        AnalysisSDK.GetInstance().S_SetActivity(this);
-        AnalysisSDK.GetInstance().S_Init();
+        AnalysisSDK.getInstance().setActivity(this);
+        AnalysisSDK.getInstance().init();
+        AnalysisSDK.getInstance().logEvent("eventdddd","dsdsd","dsdd");
     }
 }

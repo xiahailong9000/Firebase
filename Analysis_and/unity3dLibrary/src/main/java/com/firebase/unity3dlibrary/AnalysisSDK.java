@@ -1,7 +1,7 @@
 package com.firebase.unity3dlibrary;
 
 
-import android.content.Context;
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -11,49 +11,60 @@ import com.unity3d.player.UnityPlayer;
 public class AnalysisSDK {
     AnalysisSDK(){}
     static AnalysisSDK instance;
-    public static AnalysisSDK GetInstance(){
+    public static AnalysisSDK getInstance(){
         Log.e("AnalysisSDK","AnalysisSDK------------GetInstance");
         if(instance==null){
             instance=new AnalysisSDK();
-            instance.context= UnityPlayer.currentActivity;
+            if(UnityPlayer.currentActivity!=null){
+                instance.activity = UnityPlayer.currentActivity;
+            }
         }
 
         return instance;
     }
+    Activity activity;
+    public void setActivity(Activity context){
+        this.activity =context;
+    }
+
+
     IListener listener;
-    public void SetListener(IListener listener){
+    public void setListener(IListener listener){
         Log.e("AnalysisSDK","AnalysisSDK------------SetListener");
         this.listener=listener;
         if(listener!=null){
             listener.onEvent("hhh","3333333333","hhhh555555555555555");
         }
     }
-    Context context;
-    public void S_SetActivity(Context context){
-        this.context=context;
-    }
-
-
 
 
     FirebaseAnalytics mFirebaseAnalytics;
-    public void S_Init(){
+    public void init(){
         Log.e("AnalysisSDK","AnalysisSDK------------S_Init");
         // Obtain the FirebaseAnalytics instance.
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
-        S_LogEvent();
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(activity);
     }
 
 
-    void S_LogEvent(){
+    public void logEvent(String var1,String var2,String nnn){
         Bundle bundle = new Bundle();
-        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "id-hhhhh");
-        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "name-kkkddjdjd");
-        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, var1);
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME,var2);
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, nnn);
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
         if(listener!=null){
             listener.onEvent("hhh","消息发送成功了","hhhh回电话打电话");
         }
+    }
+    public void setUserId(String userId){
+        mFirebaseAnalytics.setUserId(userId);
+    }
+
+    public void setUserProperty(String var1,String var2){
+        mFirebaseAnalytics.setUserProperty(var1,var2);
+    }
+    public void setCurrentScreen(String var1,String var2,String nnn){
+        //mFirebaseAnalytics.setCurrentScreen(var1,var2,nnn);
     }
 }
 
