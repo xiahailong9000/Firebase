@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "95488624690",
+    "firebase_url": "https://fucking-great-test.firebaseio.com",
+    "project_id": "fucking-great-test",
+    "storage_bucket": "fucking-great-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:95488624690:android:2987af710067e676",
+        "android_client_info": {
+          "package_name": "com.xia9000.FuckingGreat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "95488624690-bok9rbhqjq6bae6c9uu595urtcg0v17g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbI5C3D7u6prSZ7H1vCsoYFFndMD0Qu9Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
