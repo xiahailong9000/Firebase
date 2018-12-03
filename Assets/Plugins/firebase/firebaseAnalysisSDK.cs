@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 namespace topifish.sdk{
-    public class firebaseAnalysisSDK  {
+    public class FirebaseAnalysisSDK  {
 
         private AndroidJavaObject jarInstance;
         public  Action<string,string> bannerEventHandler;
@@ -20,13 +20,21 @@ namespace topifish.sdk{
                 jarInstance.Call("init");
             }
         }
-        public void logEvent(string var1, string var2, string nnn) {
+        public void LogEvent(string var1, string var2, string nnn) {
             jarInstance.Call("logEvent",var1,var2,nnn);
         }
-
+        public void SetUserId(string var1) {
+            jarInstance.Call("setUserId", var1);
+        }
+        public void SetUserProperty(string var1, string var2) {
+            jarInstance.Call("setUserProperty", var1, var2);
+        }
+        public void SetCurrentScreen(string var1, string var2) {
+            jarInstance.Call("setCurrentScreen", var1, var2);
+        }
     }
     class InnerListener : IListener {
-        internal firebaseAnalysisSDK admobInstance;
+        internal FirebaseAnalysisSDK admobInstance;
         public void onEvent(string adtype, string eventName, string paramString) {
             //if (adtype == "banner") {
             //    if (admobInstance.bannerEventHandler != null)
