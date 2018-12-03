@@ -12,7 +12,7 @@ public class Analysis {
     Analysis(){}
     static Analysis instance;
     public static Analysis getInstance(){
-        Log.e("firebase.AnalysisSDK","AnalysisSDK------------GetInstance");
+        Log.e("firebase.A","AnalysisSDK------------GetInstance");
         if(instance==null){
             instance=new Analysis();
             if(UnityPlayer.currentActivity!=null){
@@ -30,7 +30,7 @@ public class Analysis {
 
     IListener listener;
     public void setListener(IListener listener){
-        Log.e("firebase.AnalysisSDK","AnalysisSDK------------SetListener");
+        Log.e("firebase.A","AnalysisSDK------------SetListener");
         this.listener=listener;
         if(listener!=null){
             listener.onEvent("hhh","3333333333","hhhh555555555555555");
@@ -40,7 +40,7 @@ public class Analysis {
 
     FirebaseAnalytics mFirebaseAnalytics;
     public void init(){
-        Log.e("firebase.AnalysisSDK","AnalysisSDK------------S_Init");
+        Log.e("firebase.A","AnalysisSDK------------S_Init");
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(activity);
     }
@@ -57,7 +57,6 @@ public class Analysis {
         }
     }
     public void setUserId(String userId){
-
         mFirebaseAnalytics.setUserId(userId);
     }
 

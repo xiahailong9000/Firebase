@@ -40,21 +40,8 @@ namespace topifish.sdk{
     }
     class InnerListener : IListener {
         internal FirebaseAnalysisSDK admobInstance;
-        public void onEvent(string adtype, string eventName, string paramString) {
-            //if (adtype == "banner") {
-            //    if (admobInstance.bannerEventHandler != null)
-            //        admobInstance.bannerEventHandler(eventName, paramString);
-            //} else if (adtype == "interstitial") {
-            //    if (admobInstance.interstitialEventHandler != null)
-            //        admobInstance.interstitialEventHandler(eventName, paramString);
-            //} else if (adtype == "rewardedVideo") {
-            //    if (admobInstance.rewardedVideoEventHandler != null)
-            //        admobInstance.rewardedVideoEventHandler(eventName, paramString);
-            //} else if (adtype == "nativeBanner") {
-            //    if (admobInstance.nativeBannerEventHandler != null)
-            //        admobInstance.nativeBannerEventHandler(eventName, paramString);
-            //}
-            Debug.LogErrorFormat("收到消息___{0}___{1}___{2}", adtype, eventName, paramString);
+        public void onEvent(string type, string eventName, string paramString) {
+            Debug.LogErrorFormat("收到消息___{0}___{1}___{2}", type, eventName, paramString);
         }
     }
 
