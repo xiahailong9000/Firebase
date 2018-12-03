@@ -4,20 +4,25 @@ using System;
 using UnityEngine;
 namespace topifish.sdk{
     public class FirebaseAnalysisSDK  {
-
         private AndroidJavaObject jarInstance;
         public  Action<string,string> bannerEventHandler;
         public  Action<string, string> interstitialEventHandler;
         public  Action<string, string> rewardedVideoEventHandler;
         public  Action<string, string> nativeBannerEventHandler;
-        public void Init() {
-            if (jarInstance == null) {
-                AndroidJavaClass admobUnityPluginClass = new AndroidJavaClass("com.firebase.unitylibrary.Analysis");
-                jarInstance = admobUnityPluginClass.CallStatic<AndroidJavaObject>("getInstance");
-                InnerListener innerlistener = new InnerListener();
-                innerlistener.admobInstance = this;
-                jarInstance.Call("setListener", new object[] { new AdmobListenerProxy(innerlistener) });
-                jarInstance.Call("init");
+        FirebaseAnalysisSDK() { }
+        static FirebaseAnalysisSDK instance;
+        public static FirebaseAnalysisSDK GetInstance {
+            get {
+                if (instance==null) {
+                    instance = new FirebaseAnalysisSDK();
+                    AndroidJavaClass admobUnityPluginClass = new AndroidJavaClass("com.firebase.unityfirebase.Analysis");
+                    instance.jarInstance = admobUnityPluginClass.CallStatic<AndroidJavaObject>("getInstance");
+                    InnerListener innerlistener = new InnerListener();
+                    innerlistener.admobInstance = instance;
+                    instance.jarInstance.Call("setListener", new object[] { new AdmobListenerProxy(innerlistener) });
+                    instance.jarInstance.Call("init");
+                }
+                return instance;
             }
         }
         public void LogEvent(string var1, string var2, string nnn) {
@@ -55,7 +60,7 @@ namespace topifish.sdk{
 
     public class AdmobListenerProxy : AndroidJavaProxy {
         private IListener listener;
-        internal AdmobListenerProxy(IListener listener) : base("com.xia.firebase.analysis.IListener") {
+        internal AdmobListenerProxy(IListener listener) : base("com.firebase.unityfirebase.IListener") {
             this.listener = listener;
         }
         void onEvent(string adtype, string eventName, string paramString) {

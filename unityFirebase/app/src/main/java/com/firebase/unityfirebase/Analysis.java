@@ -12,7 +12,7 @@ public class Analysis {
     Analysis(){}
     static Analysis instance;
     public static Analysis getInstance(){
-        Log.e("AnalysisSDK","AnalysisSDK------------GetInstance");
+        Log.e("firebase.AnalysisSDK","AnalysisSDK------------GetInstance");
         if(instance==null){
             instance=new Analysis();
             if(UnityPlayer.currentActivity!=null){
@@ -30,7 +30,7 @@ public class Analysis {
 
     IListener listener;
     public void setListener(IListener listener){
-        Log.e("AnalysisSDK","AnalysisSDK------------SetListener");
+        Log.e("firebase.AnalysisSDK","AnalysisSDK------------SetListener");
         this.listener=listener;
         if(listener!=null){
             listener.onEvent("hhh","3333333333","hhhh555555555555555");
@@ -40,7 +40,7 @@ public class Analysis {
 
     FirebaseAnalytics mFirebaseAnalytics;
     public void init(){
-        Log.e("AnalysisSDK","AnalysisSDK------------S_Init");
+        Log.e("firebase.AnalysisSDK","AnalysisSDK------------S_Init");
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(activity);
     }
@@ -57,14 +57,15 @@ public class Analysis {
         }
     }
     public void setUserId(String userId){
+
         mFirebaseAnalytics.setUserId(userId);
     }
 
     public void setUserProperty(String var1,String var2){
         mFirebaseAnalytics.setUserProperty(var1,var2);
     }
-    public void setCurrentScreen(String var1,String var2,String nnn){
-        //mFirebaseAnalytics.setCurrentScreen(var1,var2,nnn);
+    public void setCurrentScreen(String var1,String var2){
+        mFirebaseAnalytics.setCurrentScreen(activity,var1,var2);
     }
 }
 
